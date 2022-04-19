@@ -1,0 +1,65 @@
+OSPF:
+Router> en
+Router# conf t
+ROuter(config)# router ospf 10
+Router(config-router)# network 10.0.0.0 0.255.255.255 area 1
+Router(config-router)# network 20.0.0.0 0.255.255.255 area 1
+Router(config-router)# exit
+
+
+
+NTP:
+Router> en
+Router# conf t
+Router(config)# ntp server 20.0.0.10
+Router(config)# ntp update-calendar
+Router(config)# exit
+Router# show clock
+
+
+Syslog:
+Router> en
+Router# ping 10.0.0.3
+Router# conf t
+Router(config)# logging 10.0.0.3
+
+
+SSH:
+Router> en
+Router# conf t
+Router(config)# ip domain-name ismail.com
+Router(config)# hostname ismail
+ismail(config)# crypto key generate rsa
+
+how many bits in the modulous[512] : 1024
+
+ismail(config)# line vty 04
+ismail(config-line)# transport input ssh
+ismail(config-line)# ip ssh ver 2
+ismail(config-line)# login local
+ismail(config)# username ismail privilege 15 password 100
+
+
+
+
+
+
+For the above topology, set and demonstrate the AAA 
+authentication by setting the server as TACACS+ server and 
+show the output to the examiner
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)# username Admin2 secret admin2pa55
+Router(config)# tacacs-server host 192.168.2.2
+Router(config)#tacacs-server key tacacspa55
+Router(config)#aaa new-model
+Router(config)#aaa authentication login default local
+Router(config)#line console 0
+Router(config-line)#login authentication default
+Router(config-line)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#exit
