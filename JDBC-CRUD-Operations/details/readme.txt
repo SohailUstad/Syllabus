@@ -1,0 +1,1 @@
+java -cp app.jar com.jdbcCrudOperations.mainApplication.App
